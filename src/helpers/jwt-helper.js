@@ -13,4 +13,8 @@ function createJwtCookie(userId, email) {
   return jwtCookie;
 }
 
-export { createJwtCookie };
+function clearCookie() {
+  return "jwt=deleted; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT";
+}
+
+export { createJwtCookie, clearCookie };
