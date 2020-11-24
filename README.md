@@ -7,7 +7,7 @@
 
 ## Description
 
-A serverless and stateless authentication system for react app build using netlify function lock
+A serverless and stateless authentication system for react app build using netlify function
 
 ## Instructions
 
