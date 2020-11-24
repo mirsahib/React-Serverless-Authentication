@@ -1,4 +1,4 @@
-# React Weather App
+# React Serverless Authentication
 
 ![Current Issues](https://img.shields.io/github/issues/mirsahib/React-Weather-App)
 ![GitHub Forks](https://img.shields.io/github/forks/mirsahib/React-Weather-App)
