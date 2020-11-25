@@ -7,7 +7,7 @@ export async function handler(event) {
     return {
       statusCode: 401,
       body: JSON.stringify({
-        msg: "There is no jwt cookie, so the request is unauthorized",
+        msg: "Unauthorized,JWT cookie is missing",
       }),
     };
   }
