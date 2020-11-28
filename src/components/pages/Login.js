@@ -1,7 +1,8 @@
 import React, { useContext, useState } from "react";
+import { Redirect } from "react-router-dom";
 import { AuthContext } from "../../providers/auth-provider";
 function Login() {
-  const { login } = useContext(AuthContext);
+  const { login, user } = useContext(AuthContext);
   const [state, setState] = useState({ email: "", password: "" });
   const [errMsg, setErrMsg] = useState("");
   const handleChange = (e) => {
@@ -38,27 +39,34 @@ function Login() {
       console.log(error);
     }
   };
+
   return (
-    <div>
-      <h3>Login Page</h3>
-      <form onSubmit={handleSubmit}>
-        <input
-          name="email"
-          value={state.email || ""}
-          type="text"
-          placeholder="email..."
-          onChange={handleChange}
-        />
-        <input
-          name="password"
-          value={state.password || ""}
-          type="password"
-          onChange={handleChange}
-        />
-        <input type="submit" />
-      </form>
-      {errMsg ? <h6>{errMsg}</h6> : ""}
-    </div>
+    <>
+      {user ? (
+        <Redirect to="/" />
+      ) : (
+        <div>
+          <h3>Login Page</h3>
+          <form onSubmit={handleSubmit}>
+            <input
+              name="email"
+              value={state.email || ""}
+              type="text"
+              placeholder="email..."
+              onChange={handleChange}
+            />
+            <input
+              name="password"
+              value={state.password || ""}
+              type="password"
+              onChange={handleChange}
+            />
+            <input type="submit" />
+          </form>
+          {errMsg ? <h6>{errMsg}</h6> : ""}
+        </div>
+      )}
+    </>
   );
 }
 

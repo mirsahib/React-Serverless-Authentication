@@ -20,18 +20,24 @@ const AuthProvider = (props) => {
   // set token status
   const isTokenValid = (response) => {
     setToken(response.auth);
+    console.log("isvalidtoken", response.auth);
   };
 
-  const signup = (user) => sendRequest("signup", user, saveUser);
+  const signup = (user) => {
+    sendRequest("signup", user, saveUser);
+  };
   const login = (user) => {
-    console.log(user);
     sendRequest("login", user, saveUser);
   };
-  const logout = () => sendRequest("logout", undefined, deleteUser);
-  const auth = () => sendRequest("auth", undefined, isTokenValid);
+  const logout = () => {
+    sendRequest("logout", undefined, deleteUser);
+  };
+  const auth = () => {
+    sendRequest("auth", undefined, isTokenValid);
+  };
 
   return (
-    <AuthContext.Provider value={{ user, signup, login, logout, auth }}>
+    <AuthContext.Provider value={{ user, signup, login, logout, auth, token }}>
       {props.children}
     </AuthContext.Provider>
   );

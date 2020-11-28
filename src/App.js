@@ -5,6 +5,7 @@ import SignUp from "./components/pages/SignUp";
 import Login from "./components/pages/Login";
 import Protected from "./components/pages/Protected";
 import AuthProvider from "./providers/auth-provider";
+import Unauthorized from "./components/pages/Unauthorized";
 import Navbar from "./components/Navbar";
 
 function App() {
@@ -18,6 +19,7 @@ function App() {
             <Route path="/signup" component={SignUp} />
             <Route path="/login" component={Login} />
             <Route path="/protected" component={Protected} />
+            <Route path="/unauthorized" component={Unauthorized} />
           </Switch>
         </Router>
       </AuthProvider>
