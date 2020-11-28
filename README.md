@@ -1,13 +1,13 @@
 # React Serverless Authentication
 
-![Current Issues](https://img.shields.io/github/issues/mirsahib/React-Weather-App)
-![GitHub Forks](https://img.shields.io/github/forks/mirsahib/React-Weather-App)
-![GitHub stars](https://img.shields.io/github/stars/mirsahib/React-Weather-App)
-![GitHub license](https://img.shields.io/github/license/mirsahib/React-Weather-App?style=flat-square)
+![Current Issues](https://img.shields.io/github/issues/mirsahib/React-Serverless-Authentication)
+![GitHub Forks](https://img.shields.io/github/forks/mirsahib/React-Serverless-Authentication)
+![GitHub stars](https://img.shields.io/github/stars/mirsahib/React-Serverless-Authentication)
+![GitHub license](https://img.shields.io/github/license/mirsahib/React-Serverless-Authentication)
 
 ## Description
 
-A serverless and stateless authentication system for react app build using netlify function
+A serverless and stateless JWT authentication system for react app build using netlify function
 
 ## Instructions
 
@@ -23,13 +23,15 @@ Install dependencies. Make sure you already have [`nodejs`](https://nodejs.org/e
 $ yarn install
 ```
 
-Run it
+After successfull installation run
 
 ```bash
-$ yarn start
+$ netlify dev
 ```
 
-If you want to use your own api key than rename `.env.example` to `.env` and add your api key
+## Database and Local environment setting
+
+Rename `.env.example` to `.env` and add your mongo db password and jwt token secret.Generate a strong password from [here](https://passwordsgenerator.net/)
 
 ```
 REACT_APP_DB_PASSWORD = <Your mongodb atlas cluster password>
