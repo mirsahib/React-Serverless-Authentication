@@ -9,9 +9,9 @@ export async function handler(event) {
   try {
     await dbClient.connect();
     const users = dbClient.usersCollection();
-    console.log("queryStringParameters", event.queryStringParameters);
+    //console.log("queryStringParameters", event.queryStringParameters);
 
-    const { email, password } = event.queryStringParameters;
+    const { email, password } = JSON.parse(event.body);
 
     const existingUser = await users.findOne({ email });
 

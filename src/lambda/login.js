@@ -1,4 +1,5 @@
 import bcrypt from "bcryptjs";
+import { JsonWebTokenError } from "jsonwebtoken";
 import { createClient } from "../helpers/db-helper";
 import { createJwtCookie } from "../helpers/jwt-helper";
 
@@ -9,9 +10,8 @@ export async function handler(event) {
   try {
     await dbClient.connect();
     const users = dbClient.usersCollection();
-    console.log("queryStringParameters", event.queryStringParameters);
-
-    const { email, password } = event.queryStringParameters;
+    console.log(users);
+    const { email, password } = JSON.parse(event.body);
 
     const existingUser = await users.findOne({ email });
 
