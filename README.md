@@ -37,3 +37,16 @@ Rename `.env.example` to `.env` and add your mongo db password and jwt token sec
 REACT_APP_DB_PASSWORD = <Your mongodb atlas cluster password>
 REACT_APP_JWT_TOKEN = <Your randomly generated password>
 ```
+
+## API
+
+Base url : http://localhost:8888/
+
+| URL                         | Body                                        | Response                               | Description                |
+| --------------------------- | ------------------------------------------- | -------------------------------------- | -------------------------- |
+| `.netlify/functions/signup` | <ul><li>username</li><li>password</li></ul> | <ul><li>UserID</li><li>email</li></ul> | return userid id and email |
+| `.netlify/functions/login`  | <ul><li>username</li><li>password</li></ul> | <ul><li>UserID</li><li>email</li></ul> | return userid and email    |
+| `.netlify/functions/user`   | **none**                                    | <ul><li>UserID</li><li>email</li></ul> | return userid and email    |
+| `.netlify/functions/auth`   | **none**                                    | `{auth:status}`                        | return auth true or false  |
+
+NB: Use [Postman](https://www.postman.com/) to test the api
