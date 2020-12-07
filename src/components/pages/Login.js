@@ -122,8 +122,10 @@ function Login() {
                             />
                           </div>
 
-                          <div className="form-group d-flex align-items-center justify-content-between mt-4 mb-0">
-                            <input className="btn btn-success" type="submit" />
+                          <div className="form-group d-flex align-items-center  justify-content-between mt-4 mb-0">
+                            <button className="btn btn-success" type="submit">
+                              Login
+                            </button>
                           </div>
                         </form>
                       </div>
