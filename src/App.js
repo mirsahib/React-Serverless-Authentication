@@ -7,10 +7,11 @@ import Protected from "./components/pages/Protected";
 import AuthProvider from "./providers/auth-provider";
 import Unauthorized from "./components/pages/Unauthorized";
 import Navbar from "./components/Navbar";
+import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 
 function App() {
   return (
-    <div>
+    <div className="App">
       <AuthProvider>
         <Router>
           <Navbar />

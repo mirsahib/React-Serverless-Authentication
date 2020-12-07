@@ -1,9 +1,9 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Redirect } from "react-router-dom";
 import { AuthContext } from "../../providers/auth-provider";
 
 function SignUp() {
-  const { signup, user } = useContext(AuthContext);
+  const { signup, user, serverError, setServerError } = useContext(AuthContext);
   const [state, setState] = useState({ email: "", password: "" });
   const [errMsg, setErrMsg] = useState("");
   const handleChange = (e) => {
@@ -40,31 +40,89 @@ function SignUp() {
       console.log(error);
     }
   };
+  useEffect(() => {
+    console.log("mounted");
+    return () => {
+      // when component unmount refresh serverError
+      if (serverError) {
+        setServerError("");
+      }
+    };
+  }, [serverError, setServerError]);
 
   return (
     <>
       {user ? (
         <Redirect to="/" />
       ) : (
-        <div>
-          <h3>Sign Up Page</h3>
-          <form onSubmit={handleSubmit}>
-            <input
-              name="email"
-              value={state.email || ""}
-              type="text"
-              placeholder="email..."
-              onChange={handleChange}
-            />
-            <input
-              name="password"
-              value={state.password || ""}
-              type="password"
-              onChange={handleChange}
-            />
-            <input type="submit" />
-          </form>
-          {errMsg ? <h6>{errMsg}</h6> : ""}
+        <div id="layoutAuthentication">
+          <div id="layoutAuthentication_content">
+            <main>
+              <div className="container">
+                <div className="row justify-content-center">
+                  <div className="col-lg-5">
+                    {serverError ? (
+                      <div className="alert alert-danger" role="alert">
+                        {serverError.msg}
+                      </div>
+                    ) : (
+                      ""
+                    )}
+
+                    <div className="card shadow-lg border-0 rounded-lg mt-5">
+                      <div className="card-header">
+                        <h3 className="text-center font-weight-light my-4">
+                          Sign Up
+                        </h3>
+                      </div>
+                      <div className="card-body">
+                        <form onSubmit={handleSubmit}>
+                          <div className="form-group">
+                            <label
+                              className="small mb-1"
+                              htmlFor="inputEmailAddress"
+                            >
+                              Email or Username
+                            </label>
+                            <input
+                              className="form-control py-4"
+                              id="inputEmailAddress"
+                              type="email"
+                              placeholder="Enter email or username"
+                              name="email"
+                              value={state.email || ""}
+                              onChange={handleChange}
+                            />
+                          </div>
+                          <div className="form-group">
+                            <label
+                              className="small mb-1"
+                              htmlFor="inputPassword"
+                            >
+                              Password
+                            </label>
+                            <input
+                              className="form-control py-4"
+                              id="inputPassword"
+                              placeholder="Enter password"
+                              name="password"
+                              value={state.password || ""}
+                              type="password"
+                              onChange={handleChange}
+                            />
+                          </div>
+
+                          <div className="form-group d-flex align-items-center justify-content-between mt-4 mb-0">
+                            <input className="btn btn-success" type="submit" />
+                          </div>
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </main>
+          </div>
         </div>
       )}
     </>
