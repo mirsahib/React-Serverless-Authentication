@@ -35,10 +35,10 @@ const AuthProvider = (props) => {
     sendRequest("login", user, saveUser, handleError);
   };
   const logout = () => {
-    sendRequest("logout", undefined, deleteUser);
+    sendRequest("logout", undefined, deleteUser, handleError);
   };
   const auth = () => {
-    sendRequest("auth", undefined, isTokenValid);
+    sendRequest("auth", undefined, isTokenValid, handleError);
   };
 
   return (
