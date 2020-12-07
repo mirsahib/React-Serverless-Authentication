@@ -25,11 +25,12 @@ export async function handler(event) {
       email,
       password: passwordHash,
     });
+    const jwtCookie = createJwtCookie(userId, email);
 
     return {
       statusCode: 200,
       headers: {
-        "Set-Cookie": createJwtCookie(insertedId, email),
+        "Set-Cookie": jwtCookie,
         "Content-Type": "application/json",
       },
       body: JSON.stringify({ id: insertedId, email }),

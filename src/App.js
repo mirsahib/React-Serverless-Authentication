@@ -16,11 +16,11 @@ function App() {
         <Router>
           <Navbar />
           <Switch>
-            <Route exact path="/" component={Home} />
             <Route path="/signup" component={SignUp} />
             <Route path="/login" component={Login} />
             <Route path="/protected" component={Protected} />
             <Route path="/unauthorized" component={Unauthorized} />
+            <Route exact path="/" component={Home} />
           </Switch>
         </Router>
       </AuthProvider>

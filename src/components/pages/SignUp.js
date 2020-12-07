@@ -4,7 +4,11 @@ import { AuthContext } from "../../providers/auth-provider";
 
 function SignUp() {
   const { signup, user, serverError, setServerError } = useContext(AuthContext);
-  const [state, setState] = useState({ email: "", password: "" });
+  const [state, setState] = useState({
+    email: "",
+    password: "",
+    retypePassword: "",
+  });
   const [errMsg, setErrMsg] = useState("");
   const handleChange = (e) => {
     let value = e.target.value;
@@ -12,15 +16,9 @@ function SignUp() {
   };
   const validate = () => {
     let status = true;
-    if (!state.email && !state.password) {
+    if (state.password !== state.retypePassword) {
       status = false;
-      setErrMsg("Field Missing");
-    } else {
-      const pattern = /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/;
-      if (!pattern.test(String(state.email).toLowerCase())) {
-        status = false;
-        setErrMsg("Invalid email");
-      }
+      setErrMsg("Password don't match");
     }
     return status;
   };
@@ -77,30 +75,22 @@ function SignUp() {
                       </div>
                       <div className="card-body">
                         <form onSubmit={handleSubmit}>
-                          <div className="form-group">
-                            <label
-                              className="small mb-1"
-                              htmlFor="inputEmailAddress"
-                            >
-                              Email or Username
-                            </label>
+                          <div className="form-group text-left">
+                            <h5 className=" mb-1">Email</h5>
+
                             <input
                               className="form-control py-4"
                               id="inputEmailAddress"
                               type="email"
-                              placeholder="Enter email or username"
+                              placeholder="Enter email"
                               name="email"
                               value={state.email || ""}
                               onChange={handleChange}
+                              required
                             />
                           </div>
-                          <div className="form-group">
-                            <label
-                              className="small mb-1"
-                              htmlFor="inputPassword"
-                            >
-                              Password
-                            </label>
+                          <div className="form-group text-left">
+                            <h5 className=" mb-1">Password</h5>
                             <input
                               className="form-control py-4"
                               id="inputPassword"
@@ -109,7 +99,29 @@ function SignUp() {
                               value={state.password || ""}
                               type="password"
                               onChange={handleChange}
+                              required
                             />
+                          </div>
+                          <div className="form-group text-left">
+                            <h5 className=" mb-1">Retype Password</h5>
+                            <input
+                              className={
+                                "form-control py-4 " +
+                                (errMsg ? "border-danger" : "")
+                              }
+                              id="inputPassword"
+                              placeholder="Type password again"
+                              name="retypePassword"
+                              value={state.retypePassword || ""}
+                              type="password"
+                              onChange={handleChange}
+                              required
+                            />
+                            {errMsg ? (
+                              <label className="small mb-1 ">{errMsg}</label>
+                            ) : (
+                              ""
+                            )}
                           </div>
 
                           <div className="form-group d-flex align-items-center justify-content-between mt-4 mb-0">

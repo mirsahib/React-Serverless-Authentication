@@ -59,6 +59,8 @@ li a {
 }
 
 li a:hover {
+  text-decoration: none;
+  color: wheat;
   background-color: #111;
 }
 

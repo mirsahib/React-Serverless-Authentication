@@ -1,5 +1,4 @@
 import bcrypt from "bcryptjs";
-import { JsonWebTokenError } from "jsonwebtoken";
 import { createClient } from "../helpers/db-helper";
 import { createJwtCookie } from "../helpers/jwt-helper";
 

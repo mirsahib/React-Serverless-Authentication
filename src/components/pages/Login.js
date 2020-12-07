@@ -4,30 +4,13 @@ import { AuthContext } from "../../providers/auth-provider";
 function Login() {
   const { login, user, serverError, setServerError } = useContext(AuthContext);
   const [state, setState] = useState({ email: "", password: "" });
-  const [errMsg, setErrMsg] = useState("");
   const handleChange = (e) => {
     let value = e.target.value;
     setState({ ...state, [e.target.name]: value });
   };
-  const validate = () => {
-    let status = true;
-    if (!state.email && !state.password) {
-      status = false;
-      setErrMsg("Field Missing");
-    } else {
-      const pattern = /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/;
-      if (!pattern.test(String(state.email).toLowerCase())) {
-        status = false;
-        setErrMsg("Invalid email");
-      }
-    }
-    return status;
-  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!validate()) {
-      return;
-    }
     const user = {
       email: state.email,
       password: state.password,
@@ -87,13 +70,8 @@ function Login() {
                       </div>
                       <div className="card-body">
                         <form onSubmit={handleSubmit}>
-                          <div className="form-group">
-                            <label
-                              className="small mb-1"
-                              htmlFor="inputEmailAddress"
-                            >
-                              Email or Username
-                            </label>
+                          <div className="form-group text-left">
+                            <h5 className=" mb-1">Email</h5>
                             <input
                               className="form-control py-4"
                               id="inputEmailAddress"
@@ -102,15 +80,12 @@ function Login() {
                               name="email"
                               value={state.email || ""}
                               onChange={handleChange}
+                              required
                             />
                           </div>
-                          <div className="form-group">
-                            <label
-                              className="small mb-1"
-                              htmlFor="inputPassword"
-                            >
-                              Password
-                            </label>
+                          <div className="form-group text-left">
+                            <h5 className=" mb-1">Password</h5>
+
                             <input
                               className="form-control py-4"
                               id="inputPassword"
@@ -119,6 +94,7 @@ function Login() {
                               value={state.password || ""}
                               type="password"
                               onChange={handleChange}
+                              required
                             />
                           </div>
 
