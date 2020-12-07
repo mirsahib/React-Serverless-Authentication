@@ -25,7 +25,7 @@ export async function handler(event) {
       email,
       password: passwordHash,
     });
-    const jwtCookie = createJwtCookie(userId, email);
+    const jwtCookie = createJwtCookie(insertedId, email);
 
     return {
       statusCode: 200,
