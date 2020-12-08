@@ -5,11 +5,14 @@ import { AuthContext } from "../../providers/auth-provider";
 function Protected() {
   const { auth, token } = useContext(AuthContext);
   useEffect(() => {
-    try {
-      auth();
-    } catch (error) {
-      console.log(error);
-    }
+    const makeAuthCall = async () => {
+      try {
+        await auth();
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    makeAuthCall();
   }, [auth, token]);
   return (
     <div>

@@ -20,7 +20,9 @@ const AuthProvider = (props) => {
   };
   // set token status
   const isTokenValid = (response) => {
+    console.log("server response", response.auth);
     setToken(response.auth);
+    console.log("context variable", token);
     //console.log("isvalidtoken", response.auth);
   };
   // handle error message
