@@ -1,5 +1,6 @@
 # React Serverless Authentication
 
+[![Netlify Status](https://api.netlify.com/api/v1/badges/948d5dfa-3acf-4340-b96e-30f3f8e243b6/deploy-status)](https://app.netlify.com/sites/react-serverless-authentication-103/deploys)
 ![Current Issues](https://img.shields.io/github/issues/mirsahib/React-Serverless-Authentication)
 ![GitHub Forks](https://img.shields.io/github/forks/mirsahib/React-Serverless-Authentication)
 ![GitHub stars](https://img.shields.io/github/stars/mirsahib/React-Serverless-Authentication)
