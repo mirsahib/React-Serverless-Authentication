@@ -16,6 +16,8 @@ First clone this repository.
 
 ```bash
 $ git clone https://github.com/mirsahib/React-Serverless-Authentication.git
+npm i bcryptjs cookie jsonwebtoken mongodb react-router-dom
+npm install netlify-cli -g
 ```
 
 Install dependencies. Make sure you already have [`nodejs`](https://nodejs.org/en/) & [`npm`](https://www.npmjs.com/) installed in your system.
