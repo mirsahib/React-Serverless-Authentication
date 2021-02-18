@@ -1,7 +1,6 @@
 import { MongoClient } from "mongodb";
 
 function createClient() {
-  let saslprep = require("saslprep");
   const client = new MongoClient(
     `mongodb+srv://inutiles2021:${process.env.REACT_APP_DB_PASSWORD}@cluster0.npkov.mongodb.net/test?retryWrites=true&w=majority`,
     {
