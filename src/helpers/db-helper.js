@@ -2,7 +2,7 @@ import { MongoClient } from "mongodb";
 
 function createClient() {
   const client = new MongoClient(
-    `mongodb+srv://inutiles2021:Intento5000@cluster0.npkov.mongodb.net/test?retryWrites=true&w=majority`,
+    `mongodb+srv://inutiles2021:${process.env.REACT_APP_DB_PASSWORD}@cluster0.npkov.mongodb.net/test?retryWrites=true&w=majority`,
     {
       useNewUrlParser: true,
       useUnifiedTopology: true,
