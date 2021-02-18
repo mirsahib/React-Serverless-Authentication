@@ -1,9 +1,8 @@
 import { MongoClient } from "mongodb";
 
 function createClient() {
-  const mydb = process.env.DB
   const client = new MongoClient(
-    ""+mydb,
+    `mongodb+srv://inutiles2021:Intento5000@cluster0.npkov.mongodb.net/test?retryWrites=true&w=majority`,
     {
       useNewUrlParser: true,
       useUnifiedTopology: true,
