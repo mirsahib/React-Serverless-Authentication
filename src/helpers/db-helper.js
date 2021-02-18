@@ -1,8 +1,9 @@
 import { MongoClient } from "mongodb";
 
 function createClient() {
+  const mydb = process.env.DB
   const client = new MongoClient(
-    `${process.env.DB}`,
+    ""+mydb,
     {
       useNewUrlParser: true,
       useUnifiedTopology: true,
