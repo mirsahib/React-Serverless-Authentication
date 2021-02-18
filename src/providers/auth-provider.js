@@ -5,6 +5,7 @@ const AuthProvider = (props) => {
   const localUserJson = localStorage.getItem("user");
   const localUser = localUserJson && JSON.parse(localUserJson);
   const [user, setUser] = useState(localUser);
+  const [userList, setUserList] = useState({});
   const [token, setToken] = useState(false); // token state currently false
   const [serverError, setServerError] = useState("");
 
@@ -12,6 +13,11 @@ const AuthProvider = (props) => {
     setUser(user);
     localStorage.setItem("user", JSON.stringify(user));
     console.log("user saved");
+  };
+  const saveUserList = (userList) => {
+    setUserList(userList);
+    localStorage.setItem("userList", JSON.stringify(userList));
+    console.log("user list saved");
   };
 
   const deleteUser = () => {
@@ -42,11 +48,14 @@ const AuthProvider = (props) => {
   const auth = () => {
     sendRequest("auth", undefined, isTokenValid, handleError);
   };
-
+  const userlist = () => {
+    sendRequest("userlist", userList, saveUserList, handleError);
+  };
   return (
     <AuthContext.Provider
       value={{
         user,
+        userList,
         token,
         serverError,
         setServerError,
@@ -54,6 +63,7 @@ const AuthProvider = (props) => {
         login,
         logout,
         auth,
+        userlist,
       }}
     >
       {props.children}

@@ -9,6 +9,9 @@ function Unauthenticated() {
           <Link to="/">Home</Link>
         </li>
         <li>
+          <Link to="/userlist">Lista de usuarios</Link>
+        </li>
+        <li>
           <Link to="/signup">SignUp</Link>
         </li>
         <li>
