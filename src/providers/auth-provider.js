@@ -9,6 +9,7 @@ const AuthProvider = (props) => {
   const [token, setToken] = useState(false); // token state currently false
   const [serverError, setServerError] = useState("");
   const [user_Finded, setUser_Finded] = useState({});
+  const [user_Delete, setUser_Delete] = useState({});
   
   const saveUser = (user) => {
     setUser(user);
@@ -23,7 +24,12 @@ const AuthProvider = (props) => {
   const saveUserFinded = (user_Finded) => {
     setUser_Finded(user_Finded);
     localStorage.setItem("user_Finded", JSON.stringify(user_Finded));
-    console.log("user list saved");
+    console.log("user saved");
+  };
+  const saveUserDelete = (user_Delete) => {
+    setUser_Delete(user_Delete);
+    localStorage.setItem("user_Delete", JSON.stringify(user_Delete));
+    console.log("user saved for delet");
   };
   const deleteUser = () => {
     setUser(null);
@@ -59,6 +65,9 @@ const AuthProvider = (props) => {
   const usersearch = (user_Finded) => {
     sendRequest("usersearch", user_Finded, saveUserFinded, handleError);
   };
+  const userdelete = (user_Delete) => {
+    sendRequest("userdelete", user_Delete, saveUserDelete, handleError);
+  };
   return (
     <AuthContext.Provider
       value={{
@@ -70,6 +79,8 @@ const AuthProvider = (props) => {
         login,
         logout,
         auth,
+        userdelete,
+        user_Delete,
         userlist,
         user_List,
         usersearch,

@@ -1,8 +1,8 @@
 import React, { useContext, useState, useEffect } from "react";
-import { Redirect } from "react-router-dom";
 import { AuthContext } from "../../providers/auth-provider";
-function Usersearch() {
-  const { usersearch, user_Finded } = useContext(AuthContext);
+
+function Userdelete() {
+  const { userdelete, user_Delete } = useContext(AuthContext);
   const [state, setState] = useState({ email:""});
   const handleChange = (e) => {
     let value = e.target.value;
@@ -18,28 +18,24 @@ function Usersearch() {
     try {
       console.log("haber que onda");
       console.log(user.email);
-      usersearch(user.email);
+      userdelete(user.email);
       } catch (error) {
         console.log(error);
       }
-     
   };
   
   return (
     
     <div>
         <form onSubmit={handleSubmit}>
-              <label htmlFor="email">EMAIL:</label>
-              <input type="email" name="email" onChange={handleChange} />
-              
-            <button type="submit"> Buscar</button>
-            </form>
-            <p>
-             { JSON.stringify(user_Finded.data)}
-            </p>
+            <label htmlFor="email">EMAIL:</label>
+            <input type="email" name="email" onChange={handleChange} />
+            <button type="submit"> Remover</button>
+            
+        </form>
     </div>
     
   );
 }
 
-export default Usersearch;
+export default Userdelete;

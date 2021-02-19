@@ -8,6 +8,7 @@ import AuthProvider from "./providers/auth-provider";
 import Unauthorized from "./components/pages/Unauthorized";
 import Userlist from "./components/pages/Userlist"
 import Usersearch from "./components/pages/Usersearch"
+import Userdelete from "./components/pages/Userdelete"
 import Navbar from "./components/Navbar";
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 
@@ -20,6 +21,7 @@ function App() {
           <Switch>
             <Route  path="/userlist" component={Userlist}/>
             <Route  path="/usersearch" component={Usersearch}/>
+            <Route  path="/userdelete" component={Userdelete}/>
             <Route  path="/signup" component={SignUp} />
             <Route  path="/login" component={Login} />
             <Route  path="/protected" component={Protected} />
