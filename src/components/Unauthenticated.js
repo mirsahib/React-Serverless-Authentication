@@ -17,6 +17,9 @@ function Unauthenticated() {
         <li>
           <Link to="/login">Login</Link>
         </li>
+        <li>
+          <Link to="/usersearch">Buscar Usuario</Link>
+        </li>
       </ul>
     </div>
   );

@@ -5,21 +5,26 @@ const AuthProvider = (props) => {
   const localUserJson = localStorage.getItem("user");
   const localUser = localUserJson && JSON.parse(localUserJson);
   const [user, setUser] = useState(localUser);
-  const [userList, setUserList] = useState({});
+  const [user_List, setUserList] = useState({});
   const [token, setToken] = useState(false); // token state currently false
   const [serverError, setServerError] = useState("");
-
+  const [user_Finded, setUser_Finded] = useState({});
+  
   const saveUser = (user) => {
     setUser(user);
     localStorage.setItem("user", JSON.stringify(user));
     console.log("user saved");
   };
-  const saveUserList = (userList) => {
-    setUserList(userList);
-    localStorage.setItem("userList", JSON.stringify(userList));
+  const saveUserList = (user_List) => {
+    setUserList(user_List);
+    localStorage.setItem("userList", JSON.stringify(user_List));
     console.log("user list saved");
   };
-
+  const saveUserFinded = (user_Finded) => {
+    setUser_Finded(user_Finded);
+    localStorage.setItem("user_Finded", JSON.stringify(user_Finded));
+    console.log("user list saved");
+  };
   const deleteUser = () => {
     setUser(null);
     localStorage.removeItem("user");
@@ -49,13 +54,15 @@ const AuthProvider = (props) => {
     sendRequest("auth", undefined, isTokenValid, handleError);
   };
   const userlist = () => {
-    sendRequest("userlist", userList, saveUserList, handleError);
+    sendRequest("userlist", user_List, saveUserList, handleError);
+  };
+  const usersearch = (user_Finded) => {
+    sendRequest("usersearch", user_Finded, saveUserFinded, handleError);
   };
   return (
     <AuthContext.Provider
       value={{
         user,
-        userList,
         token,
         serverError,
         setServerError,
@@ -64,6 +71,9 @@ const AuthProvider = (props) => {
         logout,
         auth,
         userlist,
+        user_List,
+        usersearch,
+        user_Finded,
       }}
     >
       {props.children}

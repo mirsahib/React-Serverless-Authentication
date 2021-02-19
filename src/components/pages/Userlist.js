@@ -4,7 +4,7 @@ import { AuthContext } from "../../providers/auth-provider";
 
 function Userlist() {
   
-  let { userlist,userList , serverError, setServerError } = useContext(AuthContext);
+  let { userlist,user_List , serverError, setServerError } = useContext(AuthContext);
   
   let list = [];
   const getusers = async () => {
@@ -14,14 +14,14 @@ function Userlist() {
       console.log(error);
     }
   };
-  if (userList.data===undefined){
+  if (user_List.data===undefined){
   getusers()
-  console.log(userList.data);
+  console.log(user_List.data);
   }
-  console.log(JSON.stringify(userList.data));
+  console.log(JSON.stringify(user_List.data));
   return (
     <p>
-      { JSON.stringify(userList.data)}
+      { JSON.stringify(user_List.data)}
     </p>
   );
 }
