@@ -9,18 +9,23 @@ export async function handler(event) {
    
     try {
         await dbClient.connect();
-        const user = dbClient.usersCollection();
-        const {id} = JSON.parse(event.body);
-        //console.log(id);
-       /* const existingUser = await user.findOneById({id});
-        if (existingUser == null) {
-          errorStatusCode = 401;
-          throw new Error(`Invalid id`);
-        }*/
-        
-        const pokemon = await user.findOne({_id}).toArray();
-        console.log(pokemon);
-        console.log("pokemon ven a mi");
+        const users = dbClient.usersCollection();
+        //const {email} = JSON.parse(event.body);
+        let ema = JSON.parse(event.body);
+        console.log(ema);
+        var pokemon = "";
+        try{
+            console.log("por hacer la consulta");
+            pokemon= await users.find({email:ema}).toArray();
+            console.log(pokemon);
+            console.log("pokemon ven a mi");
+        } catch(err){
+            console.log("Hace bien la consulta salamin");
+            return {
+                statusCode: errorStatusCode,
+                body: JSON.stringify({ status: errorStatusCode, msg: err.message }),
+            };
+        }
         return {
             statusCode: 200,
             headers: {
