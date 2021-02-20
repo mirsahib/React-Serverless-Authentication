@@ -10,13 +10,15 @@ export async function handler(event) {
     try {
         await dbClient.connect();
         const users = dbClient.usersCollection();
-        //const {email} = JSON.parse(event.body);
-        let ema = JSON.parse(event.body);
-        console.log(ema);
+        const query = JSON.parse(event.body);
+        //let ema = JSON.parse(event.body);
+        console.log("+++++++++")
+        console.log(query);
+        console.log("+++++++++")
         var pokemon = "";
         try{
             console.log("por hacer la consulta");
-            pokemon= await users.find({email:ema}).toArray();
+            pokemon= await users.find(query).toArray();
             console.log(pokemon);
             console.log("pokemon ven a mi");
         } catch(err){

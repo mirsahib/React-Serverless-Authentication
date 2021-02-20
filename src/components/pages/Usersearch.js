@@ -2,7 +2,7 @@ import React, { useContext, useState, useEffect } from "react";
 import { Redirect } from "react-router-dom";
 import { AuthContext } from "../../providers/auth-provider";
 function Usersearch() {
-  const { usersearch, user_Finded } = useContext(AuthContext);
+  const { userfind, user_Finded } = useContext(AuthContext);
   const [state, setState] = useState({ email:""});
   const handleChange = (e) => {
     let value = e.target.value;
@@ -12,13 +12,14 @@ function Usersearch() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     
-    const user = {
+    const query = {
       email: state.email
     };
     try {
-      console.log("haber que onda");
-      console.log(user.email);
-      usersearch(user.email);
+      console.log("------");
+      console.log(query);
+      console.log("------");
+      userfind(query);
       } catch (error) {
         console.log(error);
       }

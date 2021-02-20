@@ -62,7 +62,7 @@ const AuthProvider = (props) => {
   const userlist = () => {
     sendRequest("userlist", user_List, saveUserList, handleError);
   };
-  const usersearch = (user_Finded) => {
+  const userfind = (user_Finded) => {
     sendRequest("usersearch", user_Finded, saveUserFinded, handleError);
   };
   const userdelete = (user_Delete) => {
@@ -83,7 +83,7 @@ const AuthProvider = (props) => {
         user_Delete,
         userlist,
         user_List,
-        usersearch,
+        userfind,
         user_Finded,
       }}
     >
