@@ -1,9 +1,10 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../providers/auth-provider";
 
 function Authenticated() {
-  const { logout } = useContext(AuthContext);
+  const [state, setState] = useState({ actualUser: "" });
+  const { logout, user } = useContext(AuthContext);
   const handleLogout = () => {
     try {
       logout();
@@ -11,8 +12,15 @@ function Authenticated() {
       console.log(error);
     }
   };
+
+  if (state.actualUser === "") {
+    setState({ actualUser: user });
+  }
+
+
   return (
     <div>
+      {console.log(state.actualUser)}
       <ul>
         <li>
           <Link to="/">Home</Link>
@@ -20,10 +28,27 @@ function Authenticated() {
         <li>
           <Link to="/protected">User Page</Link>
         </li>
-        
         <li>
-          <Link to="/userdelete">Eliminar Usuario</Link>
+          <Link to="/userlist">Lista de usuarios</Link>
         </li>
+        {
+          state.actualUser.type === "Superadmin" &&
+          <li>
+            <Link to="/usersearch">Buscar Usuario</Link>
+          </li>
+        }
+        {
+          state.actualUser.type === "Superadmin" &&
+          <li>
+            <Link to="/userdelete">Eliminar Usuario</Link>
+          </li>
+        }
+        {state.actualUser.type === "Superadmin" &&
+          <li>
+            <Link to="/userupdate">Actualizar Usuario</Link>
+          </li>
+
+        }
         <li>
           <Link onClick={handleLogout} to="/">
             Log Out

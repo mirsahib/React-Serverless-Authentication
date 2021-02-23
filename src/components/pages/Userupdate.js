@@ -3,7 +3,7 @@ import { AuthContext } from "../../providers/auth-provider";
 
 function Userupdate() {
   const { userupdate } = useContext(AuthContext);
-  const [state, setState] = useState({ email:"", name:""});
+  const [state, setState] = useState({ email:"", name:"",type:""});
   const handleChange = (e) => {
     let value = e.target.value;
     setState({ ...state, [e.target.name]: value });
@@ -14,7 +14,9 @@ function Userupdate() {
     const query = {
       email: state.email,
       query:{
-          name: state.name}
+          name: state.name,
+          type: state.type,
+        }
     };
     try {
       /*console.log("haber que onda");
@@ -33,8 +35,9 @@ function Userupdate() {
             <input type="email" name="email" onChange={handleChange} />
             <label htmlFor="name">New name:</label>
             <input type="name" name="name" onChange={handleChange} />
+            <label htmlFor="type">type:</label>
+            <input type="type" name="type" onChange={handleChange} />
             <button type="submit"> Actualizar</button>
-            
         </form>
     </div>
     

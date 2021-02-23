@@ -14,9 +14,7 @@ function Userlist() {
   };
   if (user_List.data===undefined){
   getusers()
-  console.log(user_List.data);
   }
-  console.log(JSON.stringify(user_List.data));
   return (
     <p>
       { JSON.stringify(user_List.data)}

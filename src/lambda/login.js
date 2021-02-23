@@ -32,7 +32,7 @@ export async function handler(event) {
         "Set-Cookie": jwtCookie,
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ id: userId, email }),
+      body: JSON.stringify({ id: userId, email ,name:existingUser.name, type: existingUser.type}),
     };
   } catch (err) {
     return {

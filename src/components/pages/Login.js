@@ -23,7 +23,6 @@ function Login() {
     }
   };
   useEffect(() => {
-    console.log("mounted");
     return () => {
       // when component unmount refresh serverError
       if (serverError) {
