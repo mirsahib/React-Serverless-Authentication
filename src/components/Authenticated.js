@@ -20,6 +20,10 @@ function Authenticated() {
         <li>
           <Link to="/protected">User Page</Link>
         </li>
+        
+        <li>
+          <Link to="/userdelete">Eliminar Usuario</Link>
+        </li>
         <li>
           <Link onClick={handleLogout} to="/">
             Log Out

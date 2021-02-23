@@ -1,8 +1,8 @@
-import React, { useContext, useState, useEffect } from "react";
+import React, { useContext, useState} from "react";
 import { AuthContext } from "../../providers/auth-provider";
 
 function Userdelete() {
-  const { userdelete, user_Delete } = useContext(AuthContext);
+  const { userdelete} = useContext(AuthContext);
   const [state, setState] = useState({ email:""});
   const handleChange = (e) => {
     let value = e.target.value;

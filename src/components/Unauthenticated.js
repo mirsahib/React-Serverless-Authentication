@@ -23,6 +23,9 @@ function Unauthenticated() {
         <li>
           <Link to="/userdelete">Eliminar Usuario</Link>
         </li>
+        <li>
+          <Link to="/userupdate">Actualizar Usuario</Link>
+        </li>
       </ul>
     </div>
   );

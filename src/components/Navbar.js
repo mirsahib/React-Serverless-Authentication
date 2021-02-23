@@ -5,6 +5,7 @@ import { AuthContext } from "../providers/auth-provider";
 
 function Navbar() {
   const { user } = useContext(AuthContext);
+  console.log(user);
   return <>{user ? <Authenticated /> : <Unauthenticated />}</>;
 }
 

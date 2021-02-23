@@ -1,5 +1,4 @@
-import React, { useContext, useState, useEffect } from "react";
-import { Redirect } from "react-router-dom";
+import React, { useContext, useState } from "react";
 import { AuthContext } from "../../providers/auth-provider";
 function Usersearch() {
   const { userfind, user_Finded } = useContext(AuthContext);

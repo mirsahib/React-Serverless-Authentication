@@ -8,6 +8,8 @@ const AuthProvider = (props) => {
   const [user_List, setUserList] = useState({});
   const [token, setToken] = useState(false); // token state currently false
   const [serverError, setServerError] = useState("");
+  //CRUD Users table
+  const [user_Updated, setUser_Updated] = useState({});
   const [user_Finded, setUser_Finded] = useState({});
   const [user_Delete, setUser_Delete] = useState({});
   
@@ -25,6 +27,11 @@ const AuthProvider = (props) => {
     setUser_Finded(user_Finded);
     localStorage.setItem("user_Finded", JSON.stringify(user_Finded));
     console.log("user saved");
+  };
+  const saveUserUpdated = (user_Finded) => {
+    setUser_Updated(user_Updated);
+    localStorage.setItem("user_Updated", JSON.stringify(user_Finded));
+    console.log("user updated");
   };
   const saveUserDelete = (user_Delete) => {
     setUser_Delete(user_Delete);
@@ -65,6 +72,9 @@ const AuthProvider = (props) => {
   const userfind = (user_Finded) => {
     sendRequest("usersearch", user_Finded, saveUserFinded, handleError);
   };
+  const userupdate = (user_Updated) => {
+    sendRequest("userupdate", user_Updated, saveUserUpdated, handleError);
+  };
   const userdelete = (user_Delete) => {
     sendRequest("userdelete", user_Delete, saveUserDelete, handleError);
   };
@@ -85,6 +95,8 @@ const AuthProvider = (props) => {
         user_List,
         userfind,
         user_Finded,
+        userupdate,
+        user_Updated
       }}
     >
       {props.children}

@@ -1,12 +1,10 @@
-import React, { useContext, useState, useEffect } from "react";
-import { Redirect } from "react-router-dom";
+import React, { useContext, } from "react";
 import { AuthContext } from "../../providers/auth-provider";
 
 function Userlist() {
   
-  let { userlist,user_List , serverError, setServerError } = useContext(AuthContext);
+  let { userlist,user_List } = useContext(AuthContext);
   
-  let list = [];
   const getusers = async () => {
     try {
       return userlist();

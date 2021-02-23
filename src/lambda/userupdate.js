@@ -8,15 +8,20 @@ export async function handler(event) {
     try {
         await dbClient.connect();
         const users = dbClient.usersCollection();
-        //const {email} = JSON.parse(event.body);
-        let ema = JSON.parse(event.body);
-        console.log(ema);
-        var pokemon = "";
+        const query = JSON.parse(event.body);
+        const filter = { email: query.email}
+        const options = { upsert: true };
+        const updateDoc = {
+            $set: query.query,            
+          };
+        console.log(filter);
+        console.log(updateDoc);
+        var result = "";
         try{
-            console.log("por hacer la consulta");
-            pokemon= await users.remove({email:ema});
-            console.log(pokemon);
-            console.log("pokemon eliminado");
+            result= await users.updateOne(filter, updateDoc, options);
+            console.log(
+                `${result.matchedCount} document(s) matched the filter, updated ${result.modifiedCount} document(s)`,
+              );
         } catch(err){
             console.log("Hace bien la consulta salamin");
             return {
@@ -29,7 +34,7 @@ export async function handler(event) {
             headers: {
                 "Content-Type": "application/json",
             },
-            body: JSON.stringify({data:pokemon}),
+            body: JSON.stringify({data:result}),
         };
     } catch (err) {
         return {

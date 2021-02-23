@@ -1,5 +1,3 @@
-
-import { getDefaultNormalizer } from "@testing-library/react";
 import { createClient } from "../helpers/db-helper";
 
 export async function handler(event) {
@@ -11,16 +9,10 @@ export async function handler(event) {
         await dbClient.connect();
         const users = dbClient.usersCollection();
         const query = JSON.parse(event.body);
-        //let ema = JSON.parse(event.body);
-        console.log("+++++++++")
-        console.log(query);
-        console.log("+++++++++")
         var pokemon = "";
         try{
-            console.log("por hacer la consulta");
             pokemon= await users.find(query).toArray();
             console.log(pokemon);
-            console.log("pokemon ven a mi");
         } catch(err){
             console.log("Hace bien la consulta salamin");
             return {

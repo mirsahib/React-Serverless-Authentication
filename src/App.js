@@ -10,6 +10,7 @@ import Userlist from "./components/pages/Userlist"
 import Usersearch from "./components/pages/Usersearch"
 import Userdelete from "./components/pages/Userdelete"
 import Navbar from "./components/Navbar";
+import Userupdate from "./components/pages/Userupdate"
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 
 function App() {
@@ -26,6 +27,7 @@ function App() {
             <Route  path="/login" component={Login} />
             <Route  path="/protected" component={Protected} />
             <Route  path="/unauthorized" component={Unauthorized} />
+            <Route  path="/userupdate" component={Userupdate} />
             <Route exact path="/" component={Home} />
           </Switch>
         </Router>

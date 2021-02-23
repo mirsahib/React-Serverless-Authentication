@@ -1,4 +1,3 @@
-import bcrypt from "bcryptjs";
 import { createClient } from "../helpers/db-helper";
 
 export async function handler(event) {
