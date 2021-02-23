@@ -1,6 +1,7 @@
-
+import { AuthContext } from "../../providers/auth-provider";
+import React, { useContext, useEffect, useState } from "react";
 function Hematologia_hemograma() {
-    //const { signup, user, serverError, setServerError } = useContext(AuthContext);
+    const {serverError} = useContext(AuthContext);
     const [state, setState] = useState({
       nro_Protocolo: "",
       fecha: "",
@@ -85,10 +86,7 @@ function Hematologia_hemograma() {
     };
   
     return (
-      <>
-        {user ? (
-          <Redirect to="/" />
-        ) : (
+      
             <div id="layoutAuthentication">
               <div id="layoutAuthentication_content">
                 <main>
@@ -554,8 +552,7 @@ function Hematologia_hemograma() {
                 </main>
               </div>
             </div>
-          )}
-      </>
+       
     );
   }
   

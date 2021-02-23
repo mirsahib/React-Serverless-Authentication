@@ -58,7 +58,7 @@ function  AnalisisSave() {
 
   return (
     <>
-      {user ? (
+      {analisis? (
         <Redirect to="/" />
       ) : (
           <div id="layoutAuthentication">
