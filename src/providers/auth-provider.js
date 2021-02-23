@@ -26,7 +26,7 @@ const AuthProvider = (props) => {
   const saveUserFinded = (user_Finded) => {
     setUser_Finded(user_Finded);
     localStorage.setItem("user_Finded", JSON.stringify(user_Finded));
-    console.log("user saved");
+    console.log("user finded");
   };
   const saveUserUpdated = (user_Finded) => {
     setUser_Updated(user_Updated);

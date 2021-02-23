@@ -3,15 +3,16 @@ import { createClient } from "../helpers/db-helper";
 export async function handler(event) {
     const dbClient = createClient();
     let errorStatusCode = 500;
-    console.log("entro");
+    
    
     try {
         await dbClient.connect();
         const users = dbClient.usersCollection();
         const query = JSON.parse(event.body);
+        console.log(query);
         var pokemon = "";
         try{
-            pokemon= await users.find(query).toArray();
+            pokemon= await users.find({email:query}).toArray();
             console.log(pokemon);
         } catch(err){
             console.log("Hace bien la consulta salamin");
