@@ -11,7 +11,7 @@ export async function handler(event) {
     const users = dbClient.usersCollection();
     //console.log("queryStringParameters", event.queryStringParameters);
 
-    const { email, password } = JSON.parse(event.body);
+    const { email, password, usuario, telefono, direccion, matricula  } = JSON.parse(event.body);
 
     const existingUser = await users.findOne({ email });
 
@@ -33,7 +33,7 @@ export async function handler(event) {
         "Set-Cookie": jwtCookie,
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ id: insertedId, email }),
+      body: JSON.stringify({ id: insertedId, email, usuario, telefono, direccion, matricula}),
     };
   } catch (err) {
     return {
