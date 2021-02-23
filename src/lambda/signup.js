@@ -23,7 +23,11 @@ export async function handler(event) {
     const passwordHash = await bcrypt.hash(password, salt);
     const { insertedId } = await users.insertOne({
       email,
-      password: passwordHash,
+      password: passwordHash, 
+      usuario, 
+      telefono, 
+      direccion, 
+      matricula,
     });
     const jwtCookie = createJwtCookie(insertedId, email);
 
