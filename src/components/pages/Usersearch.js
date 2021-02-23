@@ -1,7 +1,7 @@
 import React, { useContext, useState } from "react";
 import { AuthContext } from "../../providers/auth-provider";
 function Usersearch() {
-  const { userfind, user_Finded } = useContext(AuthContext);
+  const { usersearch, user_Finded } = useContext(AuthContext);
   const [state, setState] = useState({ email:""});
   const handleChange = (e) => {
     let value = e.target.value;
@@ -18,7 +18,7 @@ function Usersearch() {
       console.log("------");
       console.log(query);
       console.log("------");
-      userfind(query);
+      usersearch(query);
       } catch (error) {
         console.log(error);
       }
@@ -36,7 +36,7 @@ function Usersearch() {
             </form>
             <p>
              { JSON.stringify(user_Finded.data)}
-            </p>
+            </p> 
     </div>
     
   );
