@@ -4,15 +4,13 @@ export const AuthContext = createContext();
 const AuthProvider = (props) => {
   const localUserJson = localStorage.getItem("user");
   const localUser = localUserJson && JSON.parse(localUserJson);
-  const localAnalisisJson = localStorage.getItem("analisis");
-  const localAnalisis = localAnalisisJson && JSON.parse(localAnalisisJson);
   const [user, setUser] = useState(localUser);
   const [user_List, setUserList] = useState({});
   const [token, setToken] = useState(false); // token state currently false
   const [serverError, setServerError] = useState("");
   //CRUD Users table
   const [user_Updated, setUser_Updated] = useState({});
-  const [analisis, setAnalisis] = useState(localAnalisis);
+  const [analisis, setAnalisis] = useState({});
   const [user_Finded, setUser_Finded] = useState({});
   const [user_Delete, setUser_Delete] = useState({});
   
@@ -65,8 +63,8 @@ const AuthProvider = (props) => {
   const signup = (user) => {
     sendRequest("signup", user, saveUser, handleError);
   };
-  const analisissaved = (analisis) => {
-    sendRequest("analisissaved", analisis, saveAnalisis, handleError);
+  const analisisSave = (analisis) => {
+    sendRequest("analisis saved", analisis, saveAnalisis, handleError);
   };
   const login = (user) => {
     sendRequest("login", user, saveUser, handleError);
@@ -100,7 +98,7 @@ const AuthProvider = (props) => {
         login,
         logout,
         auth,
-        analisissaved,
+        analisisSave,
         analisis,
         userdelete,
         user_Delete,

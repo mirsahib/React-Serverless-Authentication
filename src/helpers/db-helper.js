@@ -20,6 +20,9 @@ function createClient() {
   client.usersCollection = function () {
     return this.db("test").collection("users");
   };
+  client.analisisCollection = function () {
+    return this.db("test").collection("analisis");
+  };
 
   return client;
 }

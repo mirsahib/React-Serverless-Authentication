@@ -1,7 +1,8 @@
 import React from "react";
-import AnalisisSaver from "../analisis/Hematologia_hemograma/SaveHematologia_Hemograma"
+import SaveHematologia_Hemograma from "../analisis/Hematologia_hemograma/SaveHematologia_Hemograma"
+import SaveUrianalisis from "../analisis/urianalisis/SaveUrianalisis"
 function Home() {
-  return <div><AnalisisSaver /></div>
+  return <div><SaveUrianalisis /></div>
 }
 
 export default Home;

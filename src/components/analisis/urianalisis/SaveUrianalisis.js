@@ -2,12 +2,11 @@ import React, { useContext, useEffect, useState } from "react";
 import { Redirect } from "react-router-dom";
 import { AuthContext } from "../../../providers/auth-provider";
 
-function SaveHematologia_Hemograma() {
-  const { analisisSave, serverError, setServerError } = useContext(AuthContext);
+function SaveUrianalisis() {
+  const { analisisSave, serverError } = useContext(AuthContext);
   const [state, setState] = useState({
     email: "",
     tipo: "",
-    Analisis_solicitado: "Hemograma + urea + creatinina + GOT + GPT + triglicéridos + fósforo.",
     nro_Protocolo: "",
     fecha: "",
     prof_actuante: "",
@@ -19,39 +18,31 @@ function SaveHematologia_Hemograma() {
     edad: "",
     fecha_toma_muestra: "",
     material_remitido: "",
-    eritocitros: "",
-    hemoglobina: "",
-    hematocrito: "",
-    vcm: "",
-    hcm: "",
-    chcm: "",
-    reticulocitos: "",
-    pplasmaticas: "",
-    fibrinogeno: "",
-    relp_ppFibr: "",
-    plaquetas: "",
-    leucocitos: "",
-    mieloblastos: "",
-    promielocitos: "",
-    mielocitos: "",
-    metamielocitos: "",
-    n_baciliformes: "",
-    n_segmentados: "",
-    linfocitos: "",
-    monocitos: "",
-    eosinofilos: "",
-    basofilos: "",
-    creatinina: "",
-    urea: "",
-    gpt: "",
-    got: "",
-    fa: "",
-    albumina: "",
-    proteinas_totales: "",
-    globulinas: "",
-    trigliceridos: "",
-    fosforo: "",
-
+    Analisis_solicitado: "",
+    Metodo_recoleccion: "Puncion Vesical",
+    //Examen Fisico-Quimico
+    color:"",
+    aspecto:"",
+    densidad:"",
+    ph:"",
+    sedimento:"",
+    proteinas:"",
+    cuerpos_cetonicos:"",
+    pigmentos_biliares:"",
+    glucosa:"",
+    urobilinogeno:"",
+    sangre_oculta:"",
+    nitritos:"",
+    leucocitos:"",
+    //Examen del sedimento
+    leucocitos2:"",
+    piocitos:"",
+    eritrocitos:"",
+    cristales:"",
+    cilindros:"",
+    microorganismos:"",
+    cel_transicion:"",
+    cel_escamosa:"",
   });
   
   const handleChange = (e) => {
@@ -63,11 +54,10 @@ function SaveHematologia_Hemograma() {
 
     const analisis = {
       email: state.email,
-      tipo: "hematologia-hemograma",
+      tipo: "orina-urianalisis",
       flag: false,
       myid: state.email + Date.now(),
       res: {
-        Analisis_solicitado: "Hemograma + urea + creatinina + GOT + GPT + triglicéridos + fósforo.",
         nro_Protocolo: state.nro_Protocolo,
         fecha: state.fecha,
         prof_actuante: state.prof_actuante,
@@ -79,49 +69,40 @@ function SaveHematologia_Hemograma() {
         edad: state.edad,
         fecha_toma_muestra: state.fecha_toma_muestra,
         material_remitido: state.material_remitido,
-        eritocitros: state.eritocitros,
-        hemoglobina: state.hemoglobina,
-        hematocrito: state.hematocrito,
-        vcm: state.vcm,
-        hcm: state.hcm,
-        chcm: state.chcm,
-        reticulocitos: state.reticulocitos,
-        pplasmaticas: state.pplasmaticas,
-        fibrinogeno: state.fibrinogeno,
-        relp_ppFibr: state.relp_ppFibr,
-        plaquetas: state.plaquetas,
+        Analisis_solicitado: "",
+        Metodo_recoleccion: state.Metodo_recoleccion,
+        color:state.color,
+        aspecto:state.aspecto,
+        densidad:state.densidad,
+        ph:state.ph,
+        sedimento: state.sedimento,
+        proteinas: state.proteinas,
+        cuerpos_cetonicos: state.cuerpos_cetonicos,
+        pigmentos_biliares: state.pigmentos_biliares,
+        glucosa: state.glucosa,
+        urobilinogeno: state.urobilinogeno,
+        sangre_oculta: state.sangre_oculta,
+        nitritos: state.nitritos,
         leucocitos: state.leucocitos,
-        mieloblastos: state.mieloblastos,
-        promielocitos: state.promielocitos,
-        mielocitos: state.mielocitos,
-        metamielocitos: state.metamielocitos,
-        n_baciliformes: state.n_baciliformes,
-        n_segmentados: state.n_segmentados,
-        linfocitos: state.linfocitos,
-        monocitos: state.monocitos,
-        eosinofilos: state.eosinofilos,
-        basofilos: state.basofilos,
-        creatinina: state.creatinina,
-        urea: state.urea,
-        gpt: state.gpt,
-        got: state.got,
-        fa: state.fa,
-        albumina: state.albumina,
-        proteinas_totales: state.proteina_totales,
-        globulinas: state.globulinas,
-        trigliceridos: state.trigliceridos,
-        fosforo: state.fosforo,
+        piocitos: state.piocitos,
+        eritrocitos: state.eritrocitos,
+        cristales: state.cristales,
+        cilindros: state,
+        microorganismos: state.microorganismos,
+        cel_transicion:state.cel_transicion,
+        cel_escamosa: state.cel_escamosa,
       },
     };
 
     try {
+        console.log("por entrar a guardar analisis");
       analisisSave(analisis);
     } catch (error) {
       console.log(error);
     }
-    <p>
+    /*<p>
       {JSON.stringify(analisis.data)}
-    </p>
+    </p>*/
   };
 
 
@@ -165,11 +146,10 @@ function SaveHematologia_Hemograma() {
                       </div>
                       <div className="form-group text-left">
                         <h5 className=" mb-1">Protocolo N</h5>
-
                         <input
                           className="form-control py-4"
                           id="inputEmailAddress"
-                          type="email"
+                          type="number"
                           placeholder="Ingresar nro Protocolo"
                           name="nro_Protocolo"
                           value={state.nro_Protocolo || ""}
@@ -196,7 +176,7 @@ function SaveHematologia_Hemograma() {
                         <input
                           className="form-control py-4"
                           id="inputEmailAddress"
-                          type="email"
+                          type="string"
                           placeholder="Ingresar profesional actuante"
                           name="prof_actuante"
                           value={state.prof_actuante || ""}
@@ -209,7 +189,7 @@ function SaveHematologia_Hemograma() {
                         <input
                           className="form-control py-4"
                           id="inputEmailAddress"
-                          type="email"
+                          type="string"
                           placeholder="Ingresar propietario"
                           name="propietario"
                           value={state.propietario || ""}
@@ -222,7 +202,7 @@ function SaveHematologia_Hemograma() {
                         <input
                           className="form-control py-4"
                           id="inputEmailAddress"
-                          type="email"
+                          type="string"
                           placeholder="Ingrese el paciente "
                           name="paciente"
                           value={state.paciente || ""}
@@ -238,7 +218,7 @@ function SaveHematologia_Hemograma() {
                           placeholder="Ingrese su especie"
                           name="especie"
                           value={state.especie || ""}
-                          type="email"
+                          type="string"
                           onChange={handleChange}
                           required
                         />
@@ -251,7 +231,7 @@ function SaveHematologia_Hemograma() {
                           placeholder="Ingrese Raza"
                           name="raza"
                           value={state.raza || ""}
-                          type="email"
+                          type="string"
                           onChange={handleChange}
                           required
                         />
@@ -264,7 +244,7 @@ function SaveHematologia_Hemograma() {
                           placeholder="Ingrese sexo"
                           name="sexo"
                           value={state.sexo || ""}
-                          type="email"
+                          type="string"
                           onChange={handleChange}
                           required
                         />
@@ -277,7 +257,7 @@ function SaveHematologia_Hemograma() {
                           placeholder="Ingrese Edad"
                           name="edad"
                           value={state.edad || ""}
-                          type="email"
+                          type="string"
                           onChange={handleChange}
                           required
                         />
@@ -290,7 +270,7 @@ function SaveHematologia_Hemograma() {
                           placeholder="Ingrese Fecha"
                           name="fecha_toma_muestra"
                           value={state.fecha_toma_muestra || ""}
-                          type="email"
+                          type="fecha"
                           onChange={handleChange}
                           required
                         />
@@ -303,150 +283,166 @@ function SaveHematologia_Hemograma() {
                           placeholder="Ingrese Material Remitido"
                           name="material_remitido"
                           value={state.material_remitido || ""}
-                          type="email"
+                          type="string"
+                          onChange={handleChange}
+                          required
+                        />
+                      </div>
+                      <h4 className="text-center font-weight-light my-4">
+                      EXAMEN FISICO-QUÍMICO				
+                        </h4>
+                      <div className="form-group text-left">
+                        <h5 className=" mb-1">Color</h5>
+                        <input
+                          className="form-control py-4"
+                          id="inputEmailAddress"
+                          placeholder="Ingrese Color"
+                          name="color"
+                          value={state.color || ""}
+                          type="string"
                           onChange={handleChange}
                           required
                         />
                       </div>
                       <div className="form-group text-left">
-                        <h5 className=" mb-1">Eritrocitos</h5>
+                        <h5 className=" mb-1">Aspecto</h5>
                         <input
                           className="form-control py-4"
                           id="inputEmailAddress"
-                          placeholder="Ingrese Resultado de Eritrocitos"
-                          name="eritrocitos"
-                          value={state.eritrocitos || ""}
-                          type="email"
+                          placeholder="Ingrese aspecto"
+                          name="aspecto"
+                          value={state.aspecto || ""}
+                          type="string"
                           onChange={handleChange}
                           required
                         />
                       </div>
                       <div className="form-group text-left">
-                        <h5 className=" mb-1">Hemoglobina</h5>
+                        <h5 className=" mb-1">Densidad</h5>
                         <input
                           className="form-control py-4"
                           id="inputEmailAddress"
-                          placeholder="Ingrese Resultado de Hemoglobina"
-                          name="hemoglobina"
-                          value={state.hemoglobina || ""}
-                          type="email"
+                          placeholder="Ingrese densidad"
+                          name="densidad"
+                          value={state.densidad || ""}
+                          type="string"
                           onChange={handleChange}
                           required
                         />
                       </div>
                       <div className="form-group text-left">
-                        <h5 className=" mb-1">Hematocrito</h5>
+                        <h5 className=" mb-1">pH</h5>
                         <input
                           className="form-control py-4"
                           id="inputEmailAddress"
-                          placeholder="Ingrese Resultado de Hematocrito"
-                          name="hematocrito"
-                          value={state.hematocrito || ""}
-                          type="email"
+                          placeholder="Ingrese pH"
+                          name="ph"
+                          value={state.ph || ""}
+                          type="string"
                           onChange={handleChange}
                           required
                         />
                       </div>
                       <div className="form-group text-left">
-                        <h5 className=" mb-1">V.C.M.</h5>
+                        <h5 className=" mb-1">Sedimento</h5>
                         <input
                           className="form-control py-4"
                           id="inputEmailAddress"
-                          placeholder="Ingrese Resultado de V.C.M."
-                          name="vcm"
-                          value={state.vcm || ""}
-                          type="email"
+                          placeholder="Ingrese sedimento"
+                          name="sedimento"
+                          value={state.sedimento || ""}
+                          type="string"
                           onChange={handleChange}
                           required
                         />
                       </div>
                       <div className="form-group text-left">
-                        <h5 className=" mb-1">H.C.M.</h5>
+                        <h5 className=" mb-1">Proteínas</h5>
                         <input
                           className="form-control py-4"
                           id="inputEmailAddress"
-                          placeholder="Ingrese Resultado de H.C.M."
-                          name="hcm"
-                          value={state.hcn || ""}
-                          type="email"
+                          placeholder="Ingrese Proteinas"
+                          name="proteinas"
+                          value={state.proteinas || ""}
+                          type="string"
                           onChange={handleChange}
                           required
                         />
                       </div>
                       <div className="form-group text-left">
-                        <h5 className=" mb-1">C.H.C.M.</h5>
+                        <h5 className=" mb-1">Cuerpos Cetonicos</h5>
                         <input
                           className="form-control py-4"
                           id="inputEmailAddress"
-                          placeholder="Ingrese Resultado de C.H.C.M."
-                          name="chcm"
-                          value={state.chcm || ""}
-                          type="email"
+                          placeholder="Ingrese cuerpos Cetonicos"
+                          name="cuerpos_cetonicos"
+                          value={state.cuerpos_cetonicos || ""}
+                          type="string"
                           onChange={handleChange}
                           required
                         />
                       </div>
                       <div className="form-group text-left">
-                        <h5 className=" mb-1">Reticulocitos</h5>
+                        <h5 className=" mb-1">Pigmentos Biliares</h5>
                         <input
                           className="form-control py-4"
                           id="inputEmailAddress"
-                          placeholder="Ingrese Resultado de Reticulocitos"
-                          name="reticulocitos"
-                          value={state.reticulocitos || ""}
-                          type="email"
+                          placeholder="Ingrese Picmentos Biliares"
+                          name="pigmentos_biliares"
+                          value={state.pigmentos_biliares || ""}
+                          type="string"
                           onChange={handleChange}
                           required
                         />
                       </div>
                       <div className="form-group text-left">
-                        <h5 className=" mb-1">P. plasmáticas</h5>
+                        <h5 className=" mb-1">Glucosa</h5>
                         <input
                           className="form-control py-4"
                           id="inputEmailAddress"
-                          placeholder="Ingrese Resultado de P. plasmáticas"
-                          name="pplasmaticas"
-                          value={state.pplasmaticas || ""}
-                          type="email"
+                          placeholder="Ingrese Glucosa"
+                          name="glucosa"
+                          value={state.glucosa || ""}
+                          type="string"
                           onChange={handleChange}
                           required
                         />
                       </div>
                       <div className="form-group text-left">
-                        <h5 className=" mb-1">Fibrinógeno</h5>
+                        <h5 className=" mb-1">Urobilinógeno</h5>
                         <input
                           className="form-control py-4"
                           id="inputEmailAddress"
-                          placeholder="Ingrese Resultado de Fibrinógeno"
-                          name="fibrinogeno"
-                          value={state.fibrinogeno || ""}
-                          type="email"
+                          placeholder="Ingrese Urobilinógeno"
+                          name="urobilinogeno"
+                          value={state.urobilinogeno|| ""}
+                          type="string"
                           onChange={handleChange}
                           required
                         />
                       </div>
                       <div className="form-group text-left">
-                        <h5 className=" mb-1">*Rel. Pp/ Fibr.</h5>
+                        <h5 className=" mb-1">Sangre oculta</h5>
                         <input
                           className="form-control py-4"
                           id="inputEmailAddress"
-                          placeholder="Ingrese Resultado de Rel. Pp/ Fibr."
-                          name="relp_ppFibr"
-                          value={state.relp_ppFibr || ""}
-                          type="email"
+                          placeholder="Ingrese Sangre oculta"
+                          name="sangre_oculta"
+                          value={state.sangre_oculta|| ""}
+                          type="string"
                           onChange={handleChange}
                           required
                         />
                       </div>
                       <div className="form-group text-left">
-                        <h5 className=" mb-1">Plaquetas</h5>
+                        <h5 className=" mb-1">Nitritos</h5>
                         <input
                           className="form-control py-4"
                           id="inputEmailAddress"
-                          placeholder="Ingrese Resultado de Plaquetas"
-                          name="plaquetas"
-                          value={state.plaquetas || ""}
-                          type="email"
+                          placeholder="Ingrese Nitritos"
+                          name="nitritos"
+                          value={state.nitritos|| ""}
+                          type="string"
                           onChange={handleChange}
                           required
                         />
@@ -456,274 +452,122 @@ function SaveHematologia_Hemograma() {
                         <input
                           className="form-control py-4"
                           id="inputEmailAddress"
-                          placeholder="Ingrese Resultado de Leucocitos"
+                          placeholder="Ingrese Leucocitos"
                           name="leucocitos"
-                          value={state.leucocitos || ""}
-                          type="email"
+                          value={state.leucocitos|| ""}
+                          type="string"
+                          onChange={handleChange}
+                          required
+                        />
+                     </div>
+                     <h4 className="text-center font-weight-light my-4">
+                     		EXAMEN DEL SEDIMENTO				
+                        </h4>
+                      <div className="form-group text-left">
+                        <h5 className=" mb-1">Leucocitos</h5>
+                        <input
+                          className="form-control py-4"
+                          id="inputEmailAddress"
+                          placeholder="Ingrese Leucocitos"
+                          name="leucocitos2"
+                          value={state.leucocitos2|| ""}
+                          type="string"
                           onChange={handleChange}
                           required
                         />
                       </div>
                       <div className="form-group text-left">
-                        <h5 className=" mb-1">Mieloblastos</h5>
+                        <h5 className=" mb-1">Piocitos</h5>
                         <input
                           className="form-control py-4"
                           id="inputEmailAddress"
-                          placeholder="Ingrese Resultado de Mieloblastos"
-                          name="mieloblastos"
-                          value={state.mieloblastos || ""}
-                          type="email"
+                          placeholder="Ingrese Piocitos"
+                          name="piocitos"
+                          value={state.piocitos|| ""}
+                          type="string"
                           onChange={handleChange}
                           required
                         />
                       </div>
                       <div className="form-group text-left">
-                        <h5 className=" mb-1">Promielocitos</h5>
+                        <h5 className=" mb-1">Eritrocitos</h5>
                         <input
                           className="form-control py-4"
                           id="inputEmailAddress"
-                          placeholder="Ingrese Resultado de Promielocitos"
-                          name="promielocitos"
-                          value={state.promielocitos || ""}
-                          type="email"
+                          placeholder="Ingrese Eritrocitos"
+                          name="eritrocitos"
+                          value={state.eritrocitos|| ""}
+                          type="string"
                           onChange={handleChange}
                           required
                         />
                       </div>
                       <div className="form-group text-left">
-                        <h5 className=" mb-1">Mielocitos</h5>
+                        <h5 className=" mb-1">Cristales</h5>
                         <input
                           className="form-control py-4"
                           id="inputEmailAddress"
-                          placeholder="Ingrese Resultado de Mielocitos"
-                          name="mielocitos"
-                          value={state.mielocitos || ""}
-                          type="email"
+                          placeholder="Ingrese Cristales "
+                          name="cristales"
+                          value={state.cristales|| ""}
+                          type="string"
                           onChange={handleChange}
                           required
                         />
                       </div>
                       <div className="form-group text-left">
-                        <h5 className=" mb-1">Metamielocitos</h5>
+                        <h5 className=" mb-1">Cilindros</h5>
                         <input
                           className="form-control py-4"
                           id="inputEmailAddress"
-                          placeholder="Ingrese Resultado de Metamielocitos"
-                          name="metamielocitos"
-                          value={state.metamielocitos || ""}
-                          type="email"
+                          placeholder="Ingrese Cilindros"
+                          name="cilindros"
+                          value={state.cilindros|| ""}
+                          type="string"
                           onChange={handleChange}
                           required
                         />
                       </div>
                       <div className="form-group text-left">
-                        <h5 className=" mb-1">N. Baciliformes</h5>
+                        <h5 className=" mb-1">Microorganismos</h5>
                         <input
                           className="form-control py-4"
                           id="inputEmailAddress"
-                          placeholder="Ingrese Resultado de N. Baciliformes"
-                          name="n_baciliformes"
-                          value={state.n_baciliformes || ""}
-                          type="email"
+                          placeholder="Ingrese Microorganismos"
+                          name="microorganismos"
+                          value={state.microorganismos|| ""}
+                          type="string"
                           onChange={handleChange}
                           required
                         />
                       </div>
                       <div className="form-group text-left">
-                        <h5 className=" mb-1">N. Segmentados</h5>
+                        <h5 className=" mb-1">Cel. Transición</h5>
                         <input
                           className="form-control py-4"
                           id="inputEmailAddress"
-                          placeholder="Ingrese Resultado de N. Segmentados"
-                          name="n_segmentados"
-                          value={state.n_segmentados || ""}
-                          type="email"
+                          placeholder="Ingrese Cel. Transición"
+                          name="cel_transicion"
+                          value={state.cel_transicion|| ""}
+                          type="string"
                           onChange={handleChange}
                           required
                         />
-                      </div>
+                      </div> 
                       <div className="form-group text-left">
-                        <h5 className=" mb-1">Linfocitos</h5>
+                        <h5 className=" mb-1">Cel. Escamosas</h5>
                         <input
                           className="form-control py-4"
                           id="inputEmailAddress"
-                          placeholder="Ingrese Resultado de Linfocitos"
-                          name="linfocitos"
-                          value={state.linfocitos || ""}
-                          type="email"
+                          placeholder="Ingrese Cel. Escamosas"
+                          name="cel_escamosa"
+                          value={state.cel_escamosa|| ""}
+                          type="string"
                           onChange={handleChange}
                           required
                         />
-                      </div>
-                      <div className="form-group text-left">
-                        <h5 className=" mb-1">Monocitos</h5>
-                        <input
-                          className="form-control py-4"
-                          id="inputEmailAddress"
-                          placeholder="Ingrese Resultado de Monocitos"
-                          name="monocitos"
-                          value={state.monocitos || ""}
-                          type="email"
-                          onChange={handleChange}
-                          required
-                        />
-                      </div>
-                      <div className="form-group text-left">
-                        <h5 className=" mb-1">Eosinófilos</h5>
-                        <input
-                          className="form-control py-4"
-                          id="inputEmailAddress"
-                          placeholder="Ingrese Resultado de Eosinófilos"
-                          name="eosinofilos"
-                          value={state.monocitos || ""}
-                          type="email"
-                          onChange={handleChange}
-                          required
-                        />
-                      </div>
-                      <div className="form-group text-left">
-                        <h5 className=" mb-1">Basófilos</h5>
-                        <input
-                          className="form-control py-4"
-                          id="inputEmailAddress"
-                          placeholder="Ingrese Resultado de Basófilos"
-                          name="basofilos"
-                          value={state.basofilos || ""}
-                          type="email"
-                          onChange={handleChange}
-                          required
-                        />
-                      </div>
-                      <div className="form-group text-left">
-                        <h5 className=" mb-1">Creatinina</h5>
-                        <input
-                          className="form-control py-4"
-                          id="inputEmailAddress"
-                          placeholder="Ingrese Resultado de Creatinina"
-                          name="creatinina"
-                          value={state.creatinina || ""}
-                          type="email"
-                          onChange={handleChange}
-                          required
-                        />
-                      </div>
-                      <div className="form-group text-left">
-                        <h5 className=" mb-1">Urea</h5>
-                        <input
-                          className="form-control py-4"
-                          id="inputEmailAddress"
-                          placeholder="Ingrese Resultado de Urea"
-                          name="urea"
-                          value={state.urea || ""}
-                          type="email"
-                          onChange={handleChange}
-                          required
-                        />
-                      </div>
-                      <div className="form-group text-left">
-                        <h5 className=" mb-1">GPT</h5>
-                        <input
-                          className="form-control py-4"
-                          id="inputEmailAddress"
-                          placeholder="Ingrese Resultado de GPT"
-                          name="gpt"
-                          value={state.gpt || ""}
-                          type="email"
-                          onChange={handleChange}
-                          required
-                        />
-                      </div>
-                      <div className="form-group text-left">
-                        <h5 className=" mb-1">GOT</h5>
-                        <input
-                          className="form-control py-4"
-                          id="inputEmailAddress"
-                          placeholder="Ingrese Resultado de GOT"
-                          name="got"
-                          value={state.got || ""}
-                          type="email"
-                          onChange={handleChange}
-                          required
-                        />
-                      </div>
-                      <div className="form-group text-left">
-                        <h5 className=" mb-1">FA</h5>
-                        <input
-                          className="form-control py-4"
-                          id="inputEmailAddress"
-                          placeholder="Ingrese Resultado de FA"
-                          name="fa"
-                          value={state.fa || ""}
-                          type="email"
-                          onChange={handleChange}
-                          required
-                        />
-                      </div>
-                      <div className="form-group text-left">
-                        <h5 className=" mb-1">Albumina </h5>
-                        <input
-                          className="form-control py-4"
-                          id="inputEmailAddress"
-                          placeholder="Ingrese Resultado de Albumina "
-                          name="albumina"
-                          value={state.albumina || ""}
-                          type="email"
-                          onChange={handleChange}
-                          required
-                        />
-                      </div>
-                      <div className="form-group text-left">
-                        <h5 className=" mb-1">Proteinas Totales</h5>
-                        <input
-                          className="form-control py-4"
-                          id="inputEmailAddress"
-                          placeholder="Ingrese Resultado de Proteinas Totales "
-                          name="proteinas_totales"
-                          value={state.proteinas_totales || ""}
-                          type="email"
-                          onChange={handleChange}
-                          required
-                        />
-                      </div>
-                      <div className="form-group text-left">
-                        <h5 className=" mb-1">Globulinas</h5>
-                        <input
-                          className="form-control py-4"
-                          id="inputEmailAddress"
-                          placeholder="Ingrese Resultado de Globulinas "
-                          name="globulinas"
-                          value={state.globulinas || ""}
-                          type="email"
-                          onChange={handleChange}
-                          required
-                        />
-                      </div>
-                      <div className="form-group text-left">
-                        <h5 className=" mb-1">Trigliceridos</h5>
-                        <input
-                          className="form-control py-4"
-                          id="inputEmailAddress"
-                          placeholder="Ingrese Resultado de Trigliceridos "
-                          name="trigliceridos"
-                          value={state.trigliceridos || ""}
-                          type="email"
-                          onChange={handleChange}
-                          required
-                        />
-                      </div>
-                      <div className="form-group text-left">
-                        <h5 className=" mb-1">Fosforo</h5>
-                        <input
-                          className="form-control py-4"
-                          id="inputEmailAddress"
-                          placeholder="Ingrese Resultado de Fosforo "
-                          name="fosforo"
-                          value={state.fosforo || ""}
-                          type="email"
-                          onChange={handleChange}
-                          required
-                        />
-                      </div>
+                      </div>   
+                      
                       <div className="form-group d-flex align-items-center justify-content-between mt-4 mb-0">
                         <input className="btn btn-success" type="submit" />
                       </div>
@@ -739,4 +583,4 @@ function SaveHematologia_Hemograma() {
   );
 }
 
-export default SaveHematologia_Hemograma;
+export default SaveUrianalisis;
