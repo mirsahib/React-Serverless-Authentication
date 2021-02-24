@@ -1,7 +1,7 @@
 import React from "react";
-
+import AnalisisSaver from "../analisis/Hematologia_hemograma/SaveHematologia_Hemograma"
 function Home() {
-  return <h1>Home Component</h1>;
+  return <div><AnalisisSaver /></div>
 }
 
 export default Home;

@@ -12,13 +12,14 @@ import Userdelete from "./components/pages/Userdelete"
 import Navbar from "./components/Navbar";
 import Userupdate from "./components/pages/Userupdate"
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
-
+import styles  from './app.module.css'
 function App() {
   return (
     <div className="App">
       <AuthProvider>
         <Router>
           <Navbar />
+          <div className={styles.body}>
           <Switch>
             <Route  path="/userlist" component={Userlist}/>
             <Route  path="/usersearch" component={Usersearch}/>
@@ -30,6 +31,7 @@ function App() {
             <Route  path="/userupdate" component={Userupdate} />
             <Route exact path="/" component={Home} />
           </Switch>
+          </div>
         </Router>
       </AuthProvider>
     </div>

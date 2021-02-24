@@ -1,7 +1,6 @@
 import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../providers/auth-provider";
-
 function Authenticated() {
   const [state, setState] = useState({ actualUser: "" });
   const { logout, user } = useContext(AuthContext);
@@ -31,6 +30,7 @@ function Authenticated() {
         <li>
           <Link to="/userlist">Lista de usuarios</Link>
         </li>
+        
         {
           state.actualUser.type === "Superadmin" &&
           <li>

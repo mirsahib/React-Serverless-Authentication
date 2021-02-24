@@ -1,49 +1,62 @@
-import { AuthContext } from "../../providers/auth-provider";
 import React, { useContext, useEffect, useState } from "react";
-function Hematologia_hemograma() {
-    const {serverError} = useContext(AuthContext);
-    const [state, setState] = useState({
-      nro_Protocolo: "",
-      fecha: "",
-      prof_actuante: "",
-      propietario: "",
-      paciente: "",
-      especie: "",
-      raza: "",
-      sexo:"",
-      edad:"",
-      fecha_toma_muestra:"",
-      material_remitido:"",
-      eritocitros:"",
-      hemoglobina:"",
-      hematocrito:"",
-      vcm:"",
-      hcm:"",
-      chcm:"",
-      reticulocitos:"",
-      pplasmaticas:"",
-      fibrinogeno:"",
-      relp_ppFibr:"",
-      plaquetas:"",
-      leucocitos:"",
-      mieloblastos:"",
-      promielocitos:"",
-      mielocitos:"",
-      metamielocitos:"",
-      n_baciliformes:"",
-      n_segmentados:"",
-      linfocitos:"",
-      monocitos:"",
-      eosinofilos:"",
-      basofilos:"",
-    });
-    const handleChange = (e) => {
-      let value = e.target.value;
-      setState({ ...state, [e.target.name]: value });
-    };
-    const handleSubmit = async (e) => {
-      e.preventDefault();
-      const analisis = {
+import { Redirect } from "react-router-dom";
+import { AuthContext } from "../../../providers/auth-provider";
+
+
+function  AnalisisSave() {
+  const { analisisSave, analisis, serverError, setServerError } = useContext(AuthContext);
+  const [state, setState] = useState({
+    email: "",
+    tipo:"",
+        Analisis_solicitado: "Hemograma + urea + creatinina + GOT + GPT + triglicéridos + fósforo.", 
+        nro_Protocolo: "",
+        fecha: "",
+        prof_actuante: "",
+        propietario: "",
+        paciente: "",
+        especie: "",
+        raza: "",
+        sexo:"",
+        edad:"",
+        fecha_toma_muestra:"",
+        material_remitido:"",
+        eritocitros:"",
+        hemoglobina:"",
+        hematocrito:"",
+        vcm:"",
+        hcm:"",
+        chcm:"",
+        reticulocitos:"",
+        pplasmaticas:"",
+        fibrinogeno:"",
+        relp_ppFibr:"",
+        plaquetas:"",
+        leucocitos:"",
+        mieloblastos:"",
+        promielocitos:"",
+        mielocitos:"",
+        metamielocitos:"",
+        n_baciliformes:"",
+        n_segmentados:"",
+        linfocitos:"",
+        monocitos:"",
+        eosinofilos:"",
+        basofilos:"",      
+   });
+  //const [errMsg, setErrMsg] = useState("");
+  const handleChange = (e) => {
+    let value = e.target.value;
+    setState({ ...state, [e.target.name]: value });
+  };
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    
+    const analisis = {
+      email: state.email,
+      tipo:"hematologia-hemograma",
+      flag: false,
+      res: {
+        Analisis_solicitado: "Hemograma + urea + creatinina + GOT + GPT + triglicéridos + fósforo.",
         nro_Protocolo: state.nro_Protocolo,
         fecha: state.fecha,
         prof_actuante: state.prof_actuante,
@@ -77,39 +90,80 @@ function Hematologia_hemograma() {
         monocitos: state.monocitos,
         eosinofilos: state.eosinofilos,
         basofilos:state.basofilos,
-      };
-      try {
-       return  JSON.stringify(analisis)
-      } catch (error) {
-        console.log(error);
+      },
+    };
+
+    try {
+      analisisSave(analisis);
+      //setState({ email: "", password: "" });
+    } catch (error) {
+      console.log(error);
+    }
+    <p>
+    { JSON.stringify(analisis.data)}
+   </p> 
+  };
+  /*const validate = () => {
+    let status = true;
+    if (state.password !== state.retypePassword) {
+      status = false;
+      setErrMsg("Password don't match");
+    }
+    return status;
+  };*/
+ 
+  /*useEffect(() => {
+    console.log("mounted");
+    return () => {
+      // when component unmount refresh serverError
+      if (serverError) {
+        setServerError("");
       }
     };
-  
-    return (
-      
-            <div id="layoutAuthentication">
-              <div id="layoutAuthentication_content">
-                <main>
-                  <div className="container">
-                    <div className="row justify-content-center">
-                      <div className="col-lg-5">
-                        {serverError ? (
-                          <div className="alert alert-danger" role="alert">
-                            {serverError.msg}
-                          </div>
-                        ) : (
-                            ""
-                          )}
-  
-                        <div className="card shadow-lg border-0 rounded-lg mt-5">
-                          <div className="card-header">
-                            <h3 className="text-center font-weight-light my-4">
-                              Carga de Resultados de Analisis Hematologia/hemograma
-                          </h3>
-                          </div>
-                          <div className="card-body">
-                            <form onSubmit={handleSubmit}>
-                              <div className="form-group text-left">
+  }, [serverError, setServerError]);*/
+
+  return (
+    <>
+      {analisis? (
+        <Redirect to="/" />
+      ) : (
+          <div id="layoutAuthentication">
+            <div id="layoutAuthentication_content">
+              <main>
+                <div className="container">
+                  <div className="row justify-content-center">
+                    <div className="col-lg-5">
+                      {serverError ? (
+                        <div className="alert alert-danger" role="alert">
+                          {serverError.msg}
+                        </div>
+                      ) : (
+                          ""
+                        )}
+
+                      <div className="card shadow-lg border-0 rounded-lg mt-5">
+                        <div className="card-header">
+                          <h3 className="text-center font-weight-light my-4">
+                            Registrar Analisis
+                        </h3>
+                        </div>
+                        <div className="card-body">
+                          <form onSubmit={handleSubmit}>
+                            <div className="form-group text-left">
+                              <h5 className=" mb-1">Email</h5>
+
+                              <input
+                                className="form-control py-4"
+                                id="inputEmailAddress"
+                                type="email"
+                                placeholder="Ingresar Email"
+                                name="email"
+                                value={state.email || ""}
+                                onChange={handleChange}
+                                required
+                              />
+                            </div>
+                            <div className="form-group text-left">
                                 <h5 className=" mb-1">Protocolo N</h5>
   
                                 <input
@@ -540,20 +594,22 @@ function Hematologia_hemograma() {
                                   required
                                 />
                               </div>
-                              <div className="form-group d-flex align-items-center justify-content-between mt-4 mb-0">
-                                <input className="btn btn-success" type="submit" />
-                              </div>
-                            </form>
-                          </div>
+
+                            <div className="form-group d-flex align-items-center justify-content-between mt-4 mb-0">
+                              <input className="btn btn-success" type="submit" />
+                            </div>
+                          </form>
                         </div>
                       </div>
                     </div>
                   </div>
-                </main>
-              </div>
+                </div>
+              </main>
             </div>
-       
-    );
-  }
-  
-  
+          </div>
+        )}
+    </>
+  );
+}
+
+export default AnalisisSave;

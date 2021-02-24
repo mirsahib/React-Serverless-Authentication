@@ -103,7 +103,7 @@ function SignUp() {
                                 id="inputEmailAddress"
                                 type="email"
                                 placeholder="Ingresar Usuario"
-                                name="email"
+                                name="usuario"
                                 value={state.usuario || ""}
                                 onChange={handleChange}
                                 required
@@ -116,7 +116,7 @@ function SignUp() {
                                 id="inputEmailAddress"
                                 type="email"
                                 placeholder="Ingresar telefono"
-                                name="email"
+                                name="telefono"
                                 value={state.telefono || ""}
                                 onChange={handleChange}
                                 required
@@ -129,7 +129,7 @@ function SignUp() {
                                 id="inputEmailAddress"
                                 type="email"
                                 placeholder="Ingresar dirección"
-                                name="email"
+                                name="direccion"
                                 value={state.direccion || ""}
                                 onChange={handleChange}
                                 required
@@ -143,7 +143,7 @@ function SignUp() {
                                 id="inputEmailAddress"
                                 type="email"
                                 placeholder="Ingrese su matricula "
-                                name="email"
+                                name="matricula"
                                 value={state.matricula || ""}
                                 onChange={handleChange}
                                 required
