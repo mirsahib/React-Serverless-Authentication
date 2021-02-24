@@ -16,7 +16,6 @@ function Userdelete() {
       email: state.email
     };
     try {
-      console.log("haber que onda");
       console.log(user.email);
       userdelete(user.email);
       } catch (error) {
