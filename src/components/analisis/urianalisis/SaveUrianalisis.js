@@ -87,7 +87,7 @@ function SaveUrianalisis() {
         piocitos: state.piocitos,
         eritrocitos: state.eritrocitos,
         cristales: state.cristales,
-        cilindros: state,
+        cilindros: state.cilindros,
         microorganismos: state.microorganismos,
         cel_transicion:state.cel_transicion,
         cel_escamosa: state.cel_escamosa,

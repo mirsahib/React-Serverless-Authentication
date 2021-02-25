@@ -11,8 +11,9 @@ import Usersearch from "./components/pages/Usersearch"
 import Userdelete from "./components/pages/Userdelete"
 import Navbar from "./components/Navbar";
 import Userupdate from "./components/pages/Userupdate"
+import AnalisisRenderTest from "./components/pages/AnalisisRenderTest";
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
-import styles  from './app.module.css'
+import styles from './app.module.css'
 function App() {
   return (
     <div className="App">
@@ -20,17 +21,18 @@ function App() {
         <Router>
           <Navbar />
           <div className={styles.body}>
-          <Switch>
-            <Route  path="/userlist" component={Userlist}/>
-            <Route  path="/usersearch" component={Usersearch}/>
-            <Route  path="/userdelete" component={Userdelete}/>
-            <Route  path="/signup" component={SignUp} />
-            <Route  path="/login" component={Login} />
-            <Route  path="/protected" component={Protected} />
-            <Route  path="/unauthorized" component={Unauthorized} />
-            <Route  path="/userupdate" component={Userupdate} />
-            <Route exact path="/" component={Home} />
-          </Switch>
+            <Switch>
+              <Route path="/analisisRenderTest" component={AnalisisRenderTest} />
+              <Route path="/userlist" component={Userlist} />
+              <Route path="/usersearch" component={Usersearch} />
+              <Route path="/userdelete" component={Userdelete} />
+              <Route path="/signup" component={SignUp} />
+              <Route path="/login" component={Login} />
+              <Route path="/protected" component={Protected} />
+              <Route path="/unauthorized" component={Unauthorized} />
+              <Route path="/userupdate" component={Userupdate} />
+              <Route exact path="/" component={Home} />
+            </Switch>
           </div>
         </Router>
       </AuthProvider>

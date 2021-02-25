@@ -9,7 +9,7 @@ export async function handler(event) {
     const analisis = dbClient.analisisCollection();
 
     const anal= JSON.parse(event.body);
-  
+    const myid= anal.myid;
      await analisis.insertOne(anal);
 
     return {
@@ -17,7 +17,7 @@ export async function handler(event) {
       headers: {
         "Content-Type": "application/json",
       },
-      body: "Cargado con exito"
+      body: JSON.stringify({ myid: myid})
     };
   } catch (err) {
     return {

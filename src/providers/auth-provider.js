@@ -10,10 +10,12 @@ const AuthProvider = (props) => {
   const [serverError, setServerError] = useState("");
   //CRUD Users table
   const [user_Updated, setUser_Updated] = useState({});
-  const [analisis, setAnalisis] = useState({});
   const [user_Finded, setUser_Finded] = useState({});
   const [user_Delete, setUser_Delete] = useState({});
-  
+  //CRUD Analisis table
+  const [analisis_Finded, setAnalisis_Finded] = useState({});
+  const [analisis, setAnalisis] = useState({});
+
   const saveUser = (user) => {
     setUser(user);
     localStorage.setItem("user", JSON.stringify(user));
@@ -23,6 +25,11 @@ const AuthProvider = (props) => {
     setAnalisis(analisis);
     localStorage.setItem("analisis", JSON.stringify(analisis));
     console.log("analisis saved");
+  };
+  const saveAnalisisFinded = (analisis_Finded) => {
+    setAnalisis_Finded(analisis_Finded);
+    localStorage.setItem("analisis_Finded", JSON.stringify(analisis_Finded));
+    console.log("analisis finded");
   };
   const saveUserList = (user_List) => {
     setUserList(user_List);
@@ -63,8 +70,11 @@ const AuthProvider = (props) => {
   const signup = (user) => {
     sendRequest("signup", user, saveUser, handleError);
   };
+  const analisisFind = (analisis_Finded) => {
+    sendRequest("analisisFind", analisis_Finded, saveAnalisisFinded, handleError);
+  };
   const analisisSave = (analisis) => {
-    sendRequest("analisis saved", analisis, saveAnalisis, handleError);
+    sendRequest("analisisSave", analisis, saveAnalisis, handleError);
   };
   const login = (user) => {
     sendRequest("login", user, saveUser, handleError);
@@ -100,6 +110,8 @@ const AuthProvider = (props) => {
         auth,
         analisisSave,
         analisis,
+        analisisFind,
+        analisis_Finded,
         userdelete,
         user_Delete,
         userlist,

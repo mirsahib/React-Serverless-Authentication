@@ -60,12 +60,12 @@ function SaveHematologia_Hemograma() {
   };
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+    var myid = state.email + Date.now();
     const analisis = {
       email: state.email,
       tipo: "hematologia-hemograma",
       flag: false,
-      myid: state.email + Date.now(),
+      myid: myid,
       res: {
         Analisis_solicitado: "Hemograma + urea + creatinina + GOT + GPT + triglicéridos + fósforo.",
         nro_Protocolo: state.nro_Protocolo,

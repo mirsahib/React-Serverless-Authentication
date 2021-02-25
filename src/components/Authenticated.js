@@ -25,6 +25,9 @@ function Authenticated() {
           <Link to="/">Home</Link>
         </li>
         <li>
+          <Link to="/analisisRenderTest">Mis Analisis</Link>
+        </li>
+        <li>
           <Link to="/protected">User Page</Link>
         </li>
         <li>

@@ -101,7 +101,6 @@ function SignUp() {
                               <input
                                 className="form-control py-4"
                                 id="inputEmailAddress"
-                                type="email"
                                 placeholder="Ingresar Usuario"
                                 name="usuario"
                                 value={state.usuario || ""}
@@ -114,7 +113,6 @@ function SignUp() {
                               <input
                                 className="form-control py-4"
                                 id="inputEmailAddress"
-                                type="email"
                                 placeholder="Ingresar telefono"
                                 name="telefono"
                                 value={state.telefono || ""}
@@ -127,7 +125,6 @@ function SignUp() {
                               <input
                                 className="form-control py-4"
                                 id="inputEmailAddress"
-                                type="email"
                                 placeholder="Ingresar dirección"
                                 name="direccion"
                                 value={state.direccion || ""}
@@ -141,7 +138,6 @@ function SignUp() {
                               <input
                                 className="form-control py-4"
                                 id="inputEmailAddress"
-                                type="email"
                                 placeholder="Ingrese su matricula "
                                 name="matricula"
                                 value={state.matricula || ""}
