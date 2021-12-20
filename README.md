@@ -51,3 +51,8 @@ Base url : http://localhost:8888/
 | `.netlify/functions/auth`   | **none**                                    | `{auth:status}`                        | return auth true or false  |
 
 NB: Use [Postman](https://www.postman.com/) to test the api
+
+
+## Medium Article
+[Part 1](https://medium.com/swlh/react-serverless-authentication-system-part-1-netlify-function-112289f6d96e)
+[Part 2](https://mirsahib24.medium.com/react-serverless-authentication-system-part-2-frontend-build-419103b6e9c6)
